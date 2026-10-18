@@ -1,0 +1,197 @@
+Detailed architecture
+The architecture below separates the notebook's existing functionality from improvements needed for a credible competition submission.
+#chatgpt-mermaid-_r_274_{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;fill:rgb(237, 237, 237);}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#chatgpt-mermaid-_r_274_ .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-_r_274_ .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-_r_274_ .error-icon{fill:rgb(48, 48, 48);}#chatgpt-mermaid-_r_274_ .error-text{fill:rgb(237, 237, 237);stroke:rgb(237, 237, 237);}#chatgpt-mermaid-_r_274_ .edge-thickness-normal{stroke-width:1px;}#chatgpt-mermaid-_r_274_ .edge-thickness-thick{stroke-width:3.5px;}#chatgpt-mermaid-_r_274_ .edge-pattern-solid{stroke-dasharray:0;}#chatgpt-mermaid-_r_274_ .edge-thickness-invisible{stroke-width:0;fill:none;}#chatgpt-mermaid-_r_274_ .edge-pattern-dashed{stroke-dasharray:3;}#chatgpt-mermaid-_r_274_ .edge-pattern-dotted{stroke-dasharray:2;}#chatgpt-mermaid-_r_274_ .marker{fill:rgb(175, 175, 175);stroke:rgb(175, 175, 175);}#chatgpt-mermaid-_r_274_ .marker.cross{stroke:rgb(175, 175, 175);}#chatgpt-mermaid-_r_274_ svg{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;}#chatgpt-mermaid-_r_274_ p{margin:0;}#chatgpt-mermaid-_r_274_ .label{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";color:rgb(237, 237, 237);}#chatgpt-mermaid-_r_274_ .cluster-label text{fill:rgb(237, 237, 237);}#chatgpt-mermaid-_r_274_ .cluster-label span{color:rgb(237, 237, 237);}#chatgpt-mermaid-_r_274_ .cluster-label span p{background-color:transparent;}#chatgpt-mermaid-_r_274_ .label text,#chatgpt-mermaid-_r_274_ span{fill:rgb(237, 237, 237);color:rgb(237, 237, 237);}#chatgpt-mermaid-_r_274_ .node rect,#chatgpt-mermaid-_r_274_ .node circle,#chatgpt-mermaid-_r_274_ .node ellipse,#chatgpt-mermaid-_r_274_ .node polygon,#chatgpt-mermaid-_r_274_ .node path{fill:rgb(36, 22, 63);stroke:rgb(120, 73, 209);stroke-width:1px;}#chatgpt-mermaid-_r_274_ .rough-node .label text,#chatgpt-mermaid-_r_274_ .node .label text,#chatgpt-mermaid-_r_274_ .image-shape .label,#chatgpt-mermaid-_r_274_ .icon-shape .label{text-anchor:middle;}#chatgpt-mermaid-_r_274_ .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#chatgpt-mermaid-_r_274_ .rough-node .label,#chatgpt-mermaid-_r_274_ .node .label,#chatgpt-mermaid-_r_274_ .image-shape .label,#chatgpt-mermaid-_r_274_ .icon-shape .label{text-align:center;}#chatgpt-mermaid-_r_274_ .node.clickable{cursor:pointer;}#chatgpt-mermaid-_r_274_ .root .anchor path{fill:rgb(175, 175, 175)!important;stroke-width:0;stroke:rgb(175, 175, 175);}#chatgpt-mermaid-_r_274_ .arrowheadPath{fill:rgb(175, 175, 175);}#chatgpt-mermaid-_r_274_ .edgePath .path{stroke:rgb(175, 175, 175);stroke-width:1px;}#chatgpt-mermaid-_r_274_ .flowchart-link{stroke:rgb(175, 175, 175);fill:none;}#chatgpt-mermaid-_r_274_ .edgeLabel{background-color:rgb(0, 0, 0);text-align:center;}#chatgpt-mermaid-_r_274_ .edgeLabel p{background-color:rgb(0, 0, 0);}#chatgpt-mermaid-_r_274_ .edgeLabel rect{opacity:0.5;background-color:rgb(0, 0, 0);fill:rgb(0, 0, 0);}#chatgpt-mermaid-_r_274_ .labelBkg{background-color:rgba(0, 0, 0, 0.5);}#chatgpt-mermaid-_r_274_ .cluster rect{fill:rgb(48, 48, 48);stroke:rgba(255, 255, 255, 0.15);stroke-width:1px;}#chatgpt-mermaid-_r_274_ .cluster text{fill:rgb(237, 237, 237);}#chatgpt-mermaid-_r_274_ .cluster span{color:rgb(237, 237, 237);}#chatgpt-mermaid-_r_274_ div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:12px;background:rgb(48, 48, 48);border:1px solid rgba(255, 255, 255, 0.15);border-radius:2px;pointer-events:none;z-index:100;}#chatgpt-mermaid-_r_274_ .flowchartTitleText{text-anchor:middle;font-size:18px;fill:rgb(237, 237, 237);}#chatgpt-mermaid-_r_274_ rect.text{fill:none;stroke-width:0;}#chatgpt-mermaid-_r_274_ .icon-shape,#chatgpt-mermaid-_r_274_ .image-shape{background-color:rgb(0, 0, 0);text-align:center;}#chatgpt-mermaid-_r_274_ .icon-shape p,#chatgpt-mermaid-_r_274_ .image-shape p{background-color:rgb(0, 0, 0);padding:2px;}#chatgpt-mermaid-_r_274_ .icon-shape .label rect,#chatgpt-mermaid-_r_274_ .image-shape .label rect{opacity:0.5;background-color:rgb(0, 0, 0);fill:rgb(0, 0, 0);}#chatgpt-mermaid-_r_274_ .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#chatgpt-mermaid-_r_274_ .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#chatgpt-mermaid-_r_274_ .node .neo-node{stroke:rgb(120, 73, 209);}#chatgpt-mermaid-_r_274_ [data-look="neo"].node rect,#chatgpt-mermaid-_r_274_ [data-look="neo"].cluster rect,#chatgpt-mermaid-_r_274_ [data-look="neo"].node polygon{stroke:url(#chatgpt-mermaid-_r_274_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_274_ [data-look="neo"].swimlane.cluster rect{filter:none;}#chatgpt-mermaid-_r_274_ [data-look="neo"].node path{stroke:url(#chatgpt-mermaid-_r_274_-gradient);stroke-width:1px;}#chatgpt-mermaid-_r_274_ [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_274_ [data-look="neo"].node .neo-line path{stroke:rgb(120, 73, 209);filter:none;}#chatgpt-mermaid-_r_274_ [data-look="neo"].node circle{stroke:url(#chatgpt-mermaid-_r_274_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_274_ [data-look="neo"].node circle .state-start{fill:#000000;}#chatgpt-mermaid-_r_274_ [data-look="neo"].icon-shape .icon{fill:url(#chatgpt-mermaid-_r_274_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_274_ [data-look="neo"].icon-shape .icon-neo path{stroke:url(#chatgpt-mermaid-_r_274_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_274_ .node text{font-size:14px;font-weight:600;letter-spacing:normal;fill:rgb(206, 176, 251);}#chatgpt-mermaid-_r_274_ .edgeLabels text{font-size:13px;font-weight:600;letter-spacing:-0.08px;fill:rgb(206, 176, 251);}#chatgpt-mermaid-_r_274_ .node tspan[font-weight="normal"],#chatgpt-mermaid-_r_274_ .edgeLabels tspan[font-weight="normal"]{font-weight:600;}#chatgpt-mermaid-_r_274_ .edgeLabel .label rect{opacity:1;rx:13px;ry:13px;fill:rgb(23, 12, 38);stroke:rgb(65, 47, 92);stroke-width:1px;}#chatgpt-mermaid-_r_274_ .node rect,#chatgpt-mermaid-_r_274_ .node circle,#chatgpt-mermaid-_r_274_ .node ellipse,#chatgpt-mermaid-_r_274_ .node polygon,#chatgpt-mermaid-_r_274_ .node path{fill:rgb(44, 24, 74);stroke:rgba(255, 255, 255, 0.1);stroke-width:1px;}#chatgpt-mermaid-_r_274_ .node rect{rx:16px;ry:16px;}#chatgpt-mermaid-_r_274_ .node.mermaid-decision .label-container{fill:rgb(23, 12, 38);stroke:rgb(65, 47, 92);stroke-dasharray:2,2;}#chatgpt-mermaid-_r_274_ .edgePaths .flowchart-link{stroke:rgb(175, 175, 175);stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;}#chatgpt-mermaid-_r_274_ .marker{fill:rgb(175, 175, 175);stroke:rgb(175, 175, 175);}#chatgpt-mermaid-_r_274_ :root{--mermaid-font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";}Yahoo Finance OHLCVData Ingestion & ValidationPer-Ticker Historical StorageFeature Engineering10-Day Sliding WindowsHeuristic Labels for InitialExperimentsChronological Train /Validation / TestTraining PipelineLogistic Regression BaselineLSTM Sequence ModelModel Evaluation & SelectionInference ServiceRisk & Evidence EngineAlert APIMarketSentinel DashboardEvaluation ReportsPipeGen Vision Component - ifrequired and validated
+
+
+
+
+
+Layer 1 — Data ingestion
+Input: daily Open, High, Low, Close, Volume (OHLCV) data.
+- Retrieve configured tickers using yfinance.
+- Normalize columns and dates.
+- Store raw data by ticker in data/yahoo/.
+- Validate missing dates, duplicate rows, nonpositive prices, missing volume and invalid OHLC relationships.
+- Record data source, download time, ticker, and date range.
+Output: validated historical dataset with consistent schema.
+Important: Yahoo Finance daily data is suitable for an initial prototype, but it does not provide order-book or trader-identity evidence. It cannot establish coordinated trading or insider activity.
+Layer 2 — Feature engineering
+Your notebook currently calculates these features:
+Feature	Purpose
+return	Close-to-close price movement
+range	Intraday high-low range relative to open
+ret_vol_20	Rolling 20-day return volatility
+vol_z	Volume relative to its rolling mean and standard deviation
+future_abs_ret_3	Forward three-day absolute return, used for heuristic labeling
+The first four are model inputs. future_abs_ret_3 is intended for labeling and must never be supplied as an inference feature, because it uses future information.
+For a stronger version, add features such as downside/upside return, gap from previous close, rolling median volume ratio, and market-relative returns—only where data and time permit.
+Layer 3 — Window construction and labels
+- Build overlapping windows of 10 consecutive trading days per ticker.
+- Each window has four input features per day.
+- The resulting model input shape is (10, 4).
+- Keep ticker and start/end dates as metadata.
+- Generate initial heuristic labels using the notebook's return, volume and forward-return thresholds.
+Critical limitation: the labels are synthetic proxies for unusual market behavior, not ground-truth manipulation cases. Report performance as detection of threshold-defined anomalies unless independently verified labels are obtained.
+Layer 4 — Dataset splitting and leakage prevention
+Your notebook currently sorts overlapping windows by their end dates and splits them 70/10/20. This preserves ordering, but overlapping windows can share most of their observations across the train, validation and test sets.
+For the competition version, improve it as follows:
+1. Choose chronological date boundaries first.
+2. Split each ticker's historical observations into train, validation and test periods.
+3. Construct windows separately inside each split.
+4. Ensure feature calculations use only information available by each prediction date.
+5. Tune thresholds using validation data only; evaluate the final model once on the held-out test period.
+This is one of the most important improvements for trustworthy results.
+Layer 5 — Model training
+Model A: Logistic Regression
+Existing baseline
+- Summarize each window using mean, standard deviation, minimum and maximum.
+- Train using balanced class weights.
+- Output a probability for the heuristic anomaly label.
+- Keep it as the simple, explainable benchmark.
+
+
+Model B: LSTM
+Existing sequence model
+- Input: 10 days × 4 features.
+- LSTM layer with 32 units and dropout.
+- Dense sigmoid output.
+- Train with binary cross-entropy, class weights and early stopping.
+- Select the alert threshold on validation data.
+
+
+Do not assume the LSTM is better simply because it is more complex. Select the model using held-out performance, false-alarm rate, stability, and inference speed.
+Layer 6 — Risk and evidence engine
+This is a proposed addition, not yet implemented in the supplied notebook.
+It should receive model probabilities and calculate a structured alert containing:
+- Anomaly probability: model output for the trained label definition.
+- Signal evidence: which price, volatility or volume indicators are unusual.
+- Risk tier: a configurable prioritization category.
+- Data quality: whether the observation has missing or unreliable inputs.
+- Review status: new, under review, dismissed or escalated.
+Keep the model probability and the analyst-facing risk tier separate. A model probability is not automatically a calibrated probability of actual manipulation.
+Example alert:
+{
+  "ticker": "NVDA",
+  "window_start": "2023-11-01",
+  "window_end": "2023-11-14",
+  "anomaly_probability": 0.87,
+  "risk_level": "HIGH",
+  "evidence": [
+    "Trading volume unusually high",
+    "Return volatility elevated"
+  ],
+  "status": "REVIEW_REQUIRED"
+}
+
+
+This is illustrative data, not a real prediction.
+Layer 7 — Inference API
+Use a small Python API service to connect the trained model to the dashboard.
+Suggested endpoints:
+Endpoint	Purpose
+GET /health	Check service availability
+GET /tickers	List available symbols
+POST /analyze	Analyze a ticker and date range
+GET /alerts	Retrieve flagged windows
+GET /metrics	Return stored evaluation results
+POST /analyze should return alert records and supporting evidence. Validate ticker symbols, date ranges and input data before inference.
+Layer 8 — Dashboard
+Build a Streamlit dashboard for the first version to minimize development time.
+MarketSentinel dashboard layout
+Metric
+Anomalies detected
+
+
+Metric
+High-priority alerts
+
+
+
+Stock price and flagged periods
+Candlestick or line chart · Highlighted anomaly windows · Volume bars
+
+Investigation panel
+Ticker · Date range · Model score · Evidence · Review status
+
+Model performance
+Precision · Recall · F1 · False-positive rate · Inference latency
+
+
+The dashboard should never present an alert as a confirmed violation. Use wording such as “unusual activity requiring review.”
+3. PipeGen integration architecture
+This is the main hackathon risk. PipeGen is a vision-pipeline tool, not a general-purpose time-series model deployment tool. The financial pipeline above should remain independent unless the team can establish a technically meaningful integration.
+If the rules require PipeGen, treat the following as a separate component:
+#chatgpt-mermaid-_r_285_{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;fill:rgb(237, 237, 237);}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#chatgpt-mermaid-_r_285_ .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-_r_285_ .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#chatgpt-mermaid-_r_285_ .error-icon{fill:rgb(48, 48, 48);}#chatgpt-mermaid-_r_285_ .error-text{fill:rgb(237, 237, 237);stroke:rgb(237, 237, 237);}#chatgpt-mermaid-_r_285_ .edge-thickness-normal{stroke-width:1px;}#chatgpt-mermaid-_r_285_ .edge-thickness-thick{stroke-width:3.5px;}#chatgpt-mermaid-_r_285_ .edge-pattern-solid{stroke-dasharray:0;}#chatgpt-mermaid-_r_285_ .edge-thickness-invisible{stroke-width:0;fill:none;}#chatgpt-mermaid-_r_285_ .edge-pattern-dashed{stroke-dasharray:3;}#chatgpt-mermaid-_r_285_ .edge-pattern-dotted{stroke-dasharray:2;}#chatgpt-mermaid-_r_285_ .marker{fill:rgb(175, 175, 175);stroke:rgb(175, 175, 175);}#chatgpt-mermaid-_r_285_ .marker.cross{stroke:rgb(175, 175, 175);}#chatgpt-mermaid-_r_285_ svg{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:16px;}#chatgpt-mermaid-_r_285_ p{margin:0;}#chatgpt-mermaid-_r_285_ .label{font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";color:rgb(237, 237, 237);}#chatgpt-mermaid-_r_285_ .cluster-label text{fill:rgb(237, 237, 237);}#chatgpt-mermaid-_r_285_ .cluster-label span{color:rgb(237, 237, 237);}#chatgpt-mermaid-_r_285_ .cluster-label span p{background-color:transparent;}#chatgpt-mermaid-_r_285_ .label text,#chatgpt-mermaid-_r_285_ span{fill:rgb(237, 237, 237);color:rgb(237, 237, 237);}#chatgpt-mermaid-_r_285_ .node rect,#chatgpt-mermaid-_r_285_ .node circle,#chatgpt-mermaid-_r_285_ .node ellipse,#chatgpt-mermaid-_r_285_ .node polygon,#chatgpt-mermaid-_r_285_ .node path{fill:rgb(36, 22, 63);stroke:rgb(120, 73, 209);stroke-width:1px;}#chatgpt-mermaid-_r_285_ .rough-node .label text,#chatgpt-mermaid-_r_285_ .node .label text,#chatgpt-mermaid-_r_285_ .image-shape .label,#chatgpt-mermaid-_r_285_ .icon-shape .label{text-anchor:middle;}#chatgpt-mermaid-_r_285_ .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#chatgpt-mermaid-_r_285_ .rough-node .label,#chatgpt-mermaid-_r_285_ .node .label,#chatgpt-mermaid-_r_285_ .image-shape .label,#chatgpt-mermaid-_r_285_ .icon-shape .label{text-align:center;}#chatgpt-mermaid-_r_285_ .node.clickable{cursor:pointer;}#chatgpt-mermaid-_r_285_ .root .anchor path{fill:rgb(175, 175, 175)!important;stroke-width:0;stroke:rgb(175, 175, 175);}#chatgpt-mermaid-_r_285_ .arrowheadPath{fill:rgb(175, 175, 175);}#chatgpt-mermaid-_r_285_ .edgePath .path{stroke:rgb(175, 175, 175);stroke-width:1px;}#chatgpt-mermaid-_r_285_ .flowchart-link{stroke:rgb(175, 175, 175);fill:none;}#chatgpt-mermaid-_r_285_ .edgeLabel{background-color:rgb(0, 0, 0);text-align:center;}#chatgpt-mermaid-_r_285_ .edgeLabel p{background-color:rgb(0, 0, 0);}#chatgpt-mermaid-_r_285_ .edgeLabel rect{opacity:0.5;background-color:rgb(0, 0, 0);fill:rgb(0, 0, 0);}#chatgpt-mermaid-_r_285_ .labelBkg{background-color:rgba(0, 0, 0, 0.5);}#chatgpt-mermaid-_r_285_ .cluster rect{fill:rgb(48, 48, 48);stroke:rgba(255, 255, 255, 0.15);stroke-width:1px;}#chatgpt-mermaid-_r_285_ .cluster text{fill:rgb(237, 237, 237);}#chatgpt-mermaid-_r_285_ .cluster span{color:rgb(237, 237, 237);}#chatgpt-mermaid-_r_285_ div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";font-size:12px;background:rgb(48, 48, 48);border:1px solid rgba(255, 255, 255, 0.15);border-radius:2px;pointer-events:none;z-index:100;}#chatgpt-mermaid-_r_285_ .flowchartTitleText{text-anchor:middle;font-size:18px;fill:rgb(237, 237, 237);}#chatgpt-mermaid-_r_285_ rect.text{fill:none;stroke-width:0;}#chatgpt-mermaid-_r_285_ .icon-shape,#chatgpt-mermaid-_r_285_ .image-shape{background-color:rgb(0, 0, 0);text-align:center;}#chatgpt-mermaid-_r_285_ .icon-shape p,#chatgpt-mermaid-_r_285_ .image-shape p{background-color:rgb(0, 0, 0);padding:2px;}#chatgpt-mermaid-_r_285_ .icon-shape .label rect,#chatgpt-mermaid-_r_285_ .image-shape .label rect{opacity:0.5;background-color:rgb(0, 0, 0);fill:rgb(0, 0, 0);}#chatgpt-mermaid-_r_285_ .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#chatgpt-mermaid-_r_285_ .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#chatgpt-mermaid-_r_285_ .node .neo-node{stroke:rgb(120, 73, 209);}#chatgpt-mermaid-_r_285_ [data-look="neo"].node rect,#chatgpt-mermaid-_r_285_ [data-look="neo"].cluster rect,#chatgpt-mermaid-_r_285_ [data-look="neo"].node polygon{stroke:url(#chatgpt-mermaid-_r_285_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_285_ [data-look="neo"].swimlane.cluster rect{filter:none;}#chatgpt-mermaid-_r_285_ [data-look="neo"].node path{stroke:url(#chatgpt-mermaid-_r_285_-gradient);stroke-width:1px;}#chatgpt-mermaid-_r_285_ [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_285_ [data-look="neo"].node .neo-line path{stroke:rgb(120, 73, 209);filter:none;}#chatgpt-mermaid-_r_285_ [data-look="neo"].node circle{stroke:url(#chatgpt-mermaid-_r_285_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_285_ [data-look="neo"].node circle .state-start{fill:#000000;}#chatgpt-mermaid-_r_285_ [data-look="neo"].icon-shape .icon{fill:url(#chatgpt-mermaid-_r_285_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_285_ [data-look="neo"].icon-shape .icon-neo path{stroke:url(#chatgpt-mermaid-_r_285_-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#chatgpt-mermaid-_r_285_ .node text{font-size:14px;font-weight:600;letter-spacing:normal;fill:rgb(206, 176, 251);}#chatgpt-mermaid-_r_285_ .edgeLabels text{font-size:13px;font-weight:600;letter-spacing:-0.08px;fill:rgb(206, 176, 251);}#chatgpt-mermaid-_r_285_ .node tspan[font-weight="normal"],#chatgpt-mermaid-_r_285_ .edgeLabels tspan[font-weight="normal"]{font-weight:600;}#chatgpt-mermaid-_r_285_ .edgeLabel .label rect{opacity:1;rx:13px;ry:13px;fill:rgb(23, 12, 38);stroke:rgb(65, 47, 92);stroke-width:1px;}#chatgpt-mermaid-_r_285_ .node rect,#chatgpt-mermaid-_r_285_ .node circle,#chatgpt-mermaid-_r_285_ .node ellipse,#chatgpt-mermaid-_r_285_ .node polygon,#chatgpt-mermaid-_r_285_ .node path{fill:rgb(44, 24, 74);stroke:rgba(255, 255, 255, 0.1);stroke-width:1px;}#chatgpt-mermaid-_r_285_ .node rect{rx:16px;ry:16px;}#chatgpt-mermaid-_r_285_ .node.mermaid-decision .label-container{fill:rgb(23, 12, 38);stroke:rgb(65, 47, 92);stroke-dasharray:2,2;}#chatgpt-mermaid-_r_285_ .edgePaths .flowchart-link{stroke:rgb(175, 175, 175);stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;}#chatgpt-mermaid-_r_285_ .marker{fill:rgb(175, 175, 175);stroke:rgb(175, 175, 175);}#chatgpt-mermaid-_r_285_ :root{--mermaid-font-family:-apple-system-body,ui-sans-serif,-apple-system,system-ui,"Segoe UI",Helvetica,"Apple Color Emoji",Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";}Market Chart or SurveillanceVideoPipeGen Vision PipelineVisual Event / Chart ElementDetectionStructured Visual ObservationsMarketSentinel AnalysisServiceEvidence and ReviewDashboardFinancial OHLCV Model
+
+
+
+
+
+A chart-image detector could extract visible chart elements, but that would duplicate information already available in the underlying numerical data unless it solves a specific problem. Do not add this component merely to claim PipeGen usage.
+Before committing to it, confirm that the hackathon accepts this hybrid design and that PipeGen can actually implement the selected visual task. If it cannot, the financial project may not qualify for the PipeGen track.
+4. Repository structure
+marketsentinel/
+├── README.md
+├── requirements.txt
+├── .env.example
+├── data/
+│   ├── yahoo/
+│   └── processed/
+├── notebooks/
+│   └── stock_manipulation.ipynb
+├── src/
+│   ├── ingestion/
+│   │   └── yahoo_loader.py
+│   ├── features/
+│   │   └── engineer.py
+│   ├── windows/
+│   │   └── builder.py
+│   ├── models/
+│   │   ├── logistic_baseline.py
+│   │   ├── lstm_model.py
+│   │   └── train.py
+│   ├── evaluation/
+│   │   └── evaluate.py
+│   ├── risk/
+│   │   └── explain.py
+│   └── api/
+│       └── main.py
+├── dashboard/
+│   └── app.py
+├── artifacts/
+│   └── .gitkeep
+├── reports/
+│   └── .gitkeep
+├── tests/
+│   ├── test_features.py
+│   ├── test_windows.py
+│   └── test_api.py
+└── docs/
+    ├── architecture.md
+    └── pipegen-validation.md
+
+
+Never commit API keys, private credentials, or large generated model artifacts unless the repository and submission rules specifically require them.
+5. Four-member work split
+Member	Ownership	Main deliverable
+1	Data ingestion, validation, feature engineering, leakage-safe splits	Reproducible dataset pipeline
+2	Logistic Regression, LSTM, training and evaluation	Saved model and metrics report
+3	Risk scoring, evidence explanations, alert schema and API	Working analysis service
+4	Streamlit dashboard, end-to-end integration, PipeGen feasibility and demo	Demonstrable product and submission
+Interfaces to agree on immediately
+- Member 1 exports a documented feature schema and split boundaries.
+- Member 2 exports a model loader and a predict_proba-style interface.
+- Member 3 defines the common alert JSON format and API contract.
+- Member 4 consumes the alert contract rather than accessing another member's internal code.
+Each member should work in a separate module or branch and integrate against small test fixtures before using the full dataset.
+6. Evaluation and final demo
+The final demo should show:
+1. Select a ticker and historical period.
+2. Load or refresh validated data.
+3. Display the price and volume chart.
+4. Highlight windows the model considers anomalous.
+5. Open an alert and inspect its supporting signals.
+6. Compare Logistic Regression and LSTM performance.
+7. Show evaluation metrics on a chronologically held-out test period.
+8. Export a report of alerts and their evidence.
+Report precision, recall, F1, false-positive rate, and inference latency. If the labels are still generated by the notebook's heuristic, say so clearly. Do not claim measured manipulation-detection accuracy against verified cases without such labels.
